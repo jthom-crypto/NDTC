@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NDTC Institutional Custody Competitive Battlecard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B2434;
+    --ink-soft:#3A4356;
+    --paper:#FAFAF8;
+    --slate:#5C6478;
+    --line:#DEDCD3;
+    --accent:#8A6E3E;
+    --live:#2F5D50;
+    --process:#8A5A2B;
+    --unlisted:#6B6459;
+    --nocharter:#9A9384;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px 100px;}
+
+  .site-header{
+    max-width:1180px;
+    margin:0 auto;
+    padding:26px 32px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-bottom:1px solid var(--line);
+    flex-wrap:wrap;
+    gap:14px;
+  }
+  .ndtc-logo img{height:42px;width:auto;display:block;}
+  .header-name{font-size:16px;font-weight:600;color:var(--ink);}
+  .header-role{font-family:'IBM Plex Mono', monospace;font-size:12.5px;color:var(--slate);text-align:right;}
+
+  .intro{padding:44px 32px 32px;border-bottom:1px solid var(--line);}
+  .intro-inner{max-width:1180px;margin:0 auto;}
+  .eyebrow{font-family:'IBM Plex Mono', monospace;font-size:11.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
+  h1{font-weight:600;font-size:clamp(26px,3vw,34px);line-height:1.2;margin:0 0 14px;letter-spacing:-0.01em;}
+  .dek{font-size:15px;line-height:1.6;color:var(--slate);max-width:78ch;margin:0 0 20px;}
+  .note{font-size:12.5px;color:var(--slate);font-style:italic;max-width:80ch;}
+
+  .summary{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line);}
+  .summary-cell{padding:20px 24px;border-right:1px solid var(--line);}
+  .summary-cell:last-child{border-right:none;}
+  .summary-cell .num{font-size:24px;font-weight:600;display:block;}
+  .summary-cell .label{font-size:11.5px;text-transform:uppercase;letter-spacing:0.06em;color:var(--slate);margin-top:2px;display:block;}
+
+  .section{padding:44px 0 8px;border-bottom:1px solid var(--line);}
+  .section-head{margin-bottom:26px;max-width:82ch;}
+  .section-tag{font-family:'IBM Plex Mono', monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;display:block;}
+  .section-head h2{font-weight:600;font-size:21px;margin:0 0 8px;}
+  .section-thesis{font-size:14px;line-height:1.6;color:var(--slate);margin:0;}
+
+  /* Timeline */
+  .timeline{margin-top:8px;}
+  .tl-row{display:flex;gap:0;border-bottom:1px solid var(--line);padding:14px 0;}
+  .tl-date{font-family:'IBM Plex Mono', monospace;font-size:12.5px;font-weight:600;color:var(--ink);width:130px;flex-shrink:0;}
+  .tl-text{font-size:13px;color:var(--ink-soft);line-height:1.5;}
+
+  /* Battlecard grid */
+  .card-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:8px;}
+  .bcard{border:1px solid var(--line);border-radius:8px;padding:22px 24px;background:#fff;}
+  .bcard-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;gap:12px;}
+  .bcard-name{font-size:16.5px;font-weight:600;color:var(--ink);}
+  .bcard-sub{font-size:11.5px;color:var(--slate);margin-top:2px;}
+  .status-pill{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    padding:4px 9px;
+    border-radius:3px;
+    white-space:nowrap;
+    flex-shrink:0;
+  }
+  .status-pill.live{background:#E4EEE9;color:var(--live);}
+  .status-pill.process{background:#F3E7D6;color:var(--process);}
+  .status-pill.nocharter{background:#EDEAE2;color:var(--nocharter);}
+  .bcard-row{margin-top:12px;}
+  .bcard-label{font-family:'IBM Plex Mono', monospace;font-size:10px;letter-spacing:0.06em;text-transform:uppercase;color:var(--slate);margin-bottom:3px;}
+  .bcard-text{font-size:12.5px;color:var(--ink-soft);line-height:1.5;}
+  .bcard-angle{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);}
+  .bcard-angle .bcard-label{color:var(--accent);}
+  .bcard-sources{margin-top:12px;font-size:10.5px;color:var(--slate);font-style:italic;}
+  .bcard-sources a{color:var(--slate);text-decoration:underline;text-decoration-color:var(--line);}
+  .bcard-sources a:hover{color:var(--accent);}
+
+  /* Objection table */
+  .obj-row{display:grid;grid-template-columns:1fr 1.3fr;gap:24px;padding:18px 0;border-bottom:1px solid var(--line);}
+  .obj-q{font-size:13.5px;font-weight:600;color:var(--ink);line-height:1.4;}
+  .obj-a{font-size:13px;color:var(--ink-soft);line-height:1.55;}
+
+  .footnote{margin-top:40px;padding-top:20px;font-size:12px;color:var(--slate);line-height:1.7;max-width:90ch;}
+  .footnote strong{color:var(--ink-soft);}
+
+  @media (max-width:860px){
+    .card-grid{grid-template-columns:1fr;}
+    .summary{grid-template-columns:repeat(2,1fr);}
+    .summary-cell:nth-child(2n){border-right:none;}
+    .obj-row{grid-template-columns:1fr;gap:6px;}
+  }
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VK9EPRYVHN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-VK9EPRYVHN');
+</script>
+
+</head>
+<body>
+
+<div class="site-header">
+  <div class="ndtc-logo">
+    <img src="data:image/png;base64,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" alt="NDTC logo">
+  </div>
+  <div class="header-name">Justin Thom</div>
+  <div class="header-role">INSTITUTIONAL SALES ASSOCIATE application</div>
+</div>
+
+<div class="intro">
+  <div class="intro-inner">
+    <div class="eyebrow">Internal Sales Enablement · Digital Asset Custody</div>
+    <h1>Institutional Custody Competitive Battlecard</h1>
+    <p class="dek">A sales reference guide for comparing NDTC against the major digital asset custody and infrastructure players, with practical responses to common prospect objections.</p>
+    <p class="note">Internal reference document. Built for prospect conversations, not for external distribution.</p>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="summary">
+    <div class="summary-cell"><span class="num">5</span><span class="label">OCC conditional approvals in a single day, Dec 12, 2025</span></div>
+    <div class="summary-cell"><span class="num">9</span><span class="label">Crypto-focused OCC national trust bank approvals tracked through Jul 2026</span></div>
+    <div class="summary-cell"><span class="num">1</span><span class="label">Fully operational precedent: Anchorage Digital Bank</span></div>
+    <div class="summary-cell"><span class="num">Jul 10, 2026</span><span class="label">Circle becomes the first in this wave to reach final approval</span></div>
+  </div>
+
+  <section class="section">
+    <span class="section-tag">Section 01</span>
+    <div class="section-head">
+      <h2>The charter race, at a glance</h2>
+      <p class="section-thesis">The market is still being formed. Several major crypto and fintech firms are pursuing the same OCC national trust bank path, but most are still in conditional approval or pre-opening stages. For prospects, the question is no longer only "why a trust bank?" It is "which custody model fits our institution best?"</p>
+    </div>
+    <div class="timeline">
+      <div class="tl-row"><div class="tl-date">2021</div><div class="tl-text">Anchorage Digital Bank becomes the first operating federal trust-bank precedent for institutional digital assets, with years of OCC supervision and examination history.</div></div>
+      <div class="tl-row"><div class="tl-date">Dec 9, 2025</div><div class="tl-text">OCC Interpretive Letter 1188 confirms national banks may engage in riskless principal crypto-asset transactions as part of the business of banking.</div></div>
+      <div class="tl-row"><div class="tl-date">Dec 12, 2025</div><div class="tl-text">OCC conditionally approves five national trust bank charter applications in a single day: two de novo entities (Circle's First National Digital Currency Bank, Ripple National Trust Bank) and three conversions from existing state trust charters (BitGo Bank &amp; Trust, Fidelity Digital Assets, Paxos Trust Company).</div></div>
+      <div class="tl-row"><div class="tl-date">Feb 2026</div><div class="tl-text">Bridge National Trust Bank and National Digital Trust Company receive preliminary conditional OCC approval.</div></div>
+      <div class="tl-row"><div class="tl-date">Feb 23, 2026</div><div class="tl-text">Foris DAX National Trust Bank, a Crypto.com affiliate, receives preliminary conditional OCC approval.</div></div>
+      <div class="tl-row"><div class="tl-date">Mar 2026</div><div class="tl-text">OCC finalizes a rule clarifying that national trust banks may conduct non-fiduciary activities in addition to fiduciary activities.</div></div>
+      <div class="tl-row"><div class="tl-date">Apr 2026</div><div class="tl-text">Coinbase receives OCC approval to charter a national trust bank, migrating custody from its existing New York-chartered Coinbase Custody Trust Company over a three-year transition, and facilitating custody clients' access to affiliate products including Staking, Prime Trading, and Prime Financing. The model is useful as a comparison, but Coinbase's natural customer base is different from NDTC's.</div></div>
+      <div class="tl-row"><div class="tl-date">Jul 10, 2026</div><div class="tl-text">Circle's First National Digital Currency Bank (Circle National Trust) becomes the first entity in this new wave to receive final OCC approval, moving from conditional approval to authorization. Every other 2025-2026 entrant, including NDTC, remains in the conditional-approval or pre-opening stage.</div></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <span class="section-tag">Section 02</span>
+    <div class="section-head">
+      <h2>Where NDTC sits in this field</h2>
+      <p class="section-thesis">NDTC's charter application has continuity with Protego Trust's earlier OCC effort. Protego received conditional OCC approval in 2021 but did not complete all pre-conversion requirements before the approval expired. Protego Holdings later refiled under National Digital Trust Company, which received conditional approval in February 2026. This history is worth knowing, but it does not change the sales thesis.</p>
+      <p class="section-thesis" style="margin-top:14px;">NDTC does not need to compete on brand scale with Coinbase, Fidelity, BitGo, Paxos, Circle, or Ripple. Its opening is focus: banks, credit unions, broker-dealers, corporate treasuries, and fintechs that want regulated digital asset infrastructure without building it themselves.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <span class="section-tag">Section 03</span>
+    <div class="section-head">
+      <h2>Battlecard: the field</h2>
+      <p class="section-thesis">Charter status, what each player actually offers today, and the honest angle for a conversation where a prospect brings up the name.</p>
+    </div>
+
+    <div class="card-grid">
+
+      <div class="bcard">
+        <div class="bcard-head">
+          <div><div class="bcard-name">Anchorage Digital Bank, N.A.</div><div class="bcard-sub">Operating benchmark</div></div>
+          <span class="status-pill live">Operational since 2021</span>
+        </div>
+        <div class="bcard-row"><div class="bcard-label">What they offer</div><div class="bcard-text">Institutional digital asset custody, staking, trading, governance, and settlement services, anchored by Anchorage Digital Bank's national trust charter. HSM-based key architecture. Backed by a16z, GIC, Goldman Sachs, KKR, and Visa at a $4.2B valuation.</div></div>
+        <div class="bcard-row"><div class="bcard-label">Where they're strong</div><div class="bcard-text">Five years of operating history and OCC examination cycles that no other charter applicant, including NDTC, can yet point to. The reference case for "this model works."</div></div>
+        <div class="bcard-angle"><div class="bcard-label">NDTC angle</div><div class="bcard-text">Anchorage validates the OCC trust-bank model for institutional digital assets. NDTC should not compete on tenure. It should focus on where it is a better fit: banks, credit unions, fintechs, and institutions looking for a dedicated custody partner.</div></div>
+        <div class="bcard-sources">Sources: <a href="https://www.ledgerinsights.com/cryptocurrency-anchorage-awarded-national-trust-bank-charter-occ/" target="_blank" rel="noopener">Ledger Insights coverage of OCC 2021 approval</a>; <a href="https://www.anchorage.com/insights/anchorage-digital-provides-custody-and-treasury-infrastructure-for-linework-an-onchain-fintech-platform" target="_blank" rel="noopener">Anchorage Digital</a></div>
+      </div>
+
+      <div class="bcard">
+        <div class="bcard-head">
+          <div><div class="bcard-name">Coinbase National Trust Bank</div><div class="bcard-sub">Large-scale custody ecosystem</div></div>
+          <span class="status-pill process">Approved Apr 2026, migrating</span>
+        </div>
+        <div class="bcard-row"><div class="bcard-label">What they offer</div><div class="bcard-text">Migrating custody from Coinbase Custody Trust Company over a three-year de novo period. The bank would provide fiduciary digital asset custody and facilitate custody clients' access to certain Coinbase affiliate products, including Staking, Prime Trading, and Prime Financing, provided by affiliates rather than the bank itself.</div></div>
+        <div class="bcard-row"><div class="bcard-label">Where they're strong</div><div class="bcard-text">Large existing custody base, brand recognition, and an exchange ecosystem already wired into most crypto-native institutions.</div></div>
+        <div class="bcard-angle"><div class="bcard-label">NDTC angle</div><div class="bcard-text">Coinbase is the closest product-ecosystem comparison, but its core audience is crypto-native and exchange-adjacent. NDTC can focus on banks, credit unions, and fintech partners that want a more dedicated custody relationship.</div></div>
+        <div class="bcard-sources">Sources: <a href="https://www.occ.treas.gov/topics/charters-and-licensing/interpretations-and-decisions/2026/cd1370.pdf" target="_blank" rel="noopener">OCC Corporate Decision #1370 (Apr 2026)</a></div>
+      </div>
+
+      <div class="bcard">
+        <div class="bcard-head">
+          <div><div class="bcard-name">BitGo Bank &amp; Trust, N.A.</div><div class="bcard-sub">Converting from state charter, IPO-track</div></div>
+          <span class="status-pill process">Conditionally approved Dec 2025</span>
+        </div>
+        <div class="bcard-row"><div class="bcard-label">What they offer</div><div class="bcard-text">Digital asset custody, fiduciary services, escrow services, and stablecoin-related activity, regulated by more than 50 U.S. and foreign regulators today. Filed for a U.S. IPO in 2025.</div></div>
+        <div class="bcard-row"><div class="bcard-label">Where they're strong</div><div class="bcard-text">Deep institutional and exchange relationships. Its IPO process also gives it visibility and potential access to capital.</div></div>
+        <div class="bcard-angle"><div class="bcard-label">NDTC angle</div><div class="bcard-text">BitGo is strongest with crypto-native and capital markets clients. NDTC can focus on banks and credit unions asking a simpler question: who safely holds digital assets for our members?</div></div>
+        <div class="bcard-sources">Sources: <a href="https://www.occ.gov/news-issuances/news-releases/2025/nr-occ-2025-125c.pdf" target="_blank" rel="noopener">OCC conditional approval decision (Dec 12, 2025)</a>; <a href="https://www.sec.gov/Archives/edgar/data/1740604/000162828025058587/bitgoholdingsincs-1a3.htm" target="_blank" rel="noopener">BitGo Holdings SEC Form S-1/A</a></div>
+      </div>
+
+      <div class="bcard">
+        <div class="bcard-head">
+          <div><div class="bcard-name">Fidelity Digital Assets, N.A.</div><div class="bcard-sub">Converting from state charter, TradFi-backed</div></div>
+          <span class="status-pill process">Conditionally approved Dec 2025</span>
+        </div>
+        <div class="bcard-row"><div class="bcard-label">What they offer</div><div class="bcard-text">Institutional custody and trade execution since 2018, now converting to a national trust charter. Backed by the full scale and balance sheet of Fidelity Investments. Launched Fidelity Digital Dollar (FIDD) in February 2026, a stablecoin issued by Fidelity Digital Assets, National Association.</div></div>
+        <div class="bcard-row"><div class="bcard-label">Where they're strong</div><div class="bcard-text">Strong brand trust with large asset managers, pension funds, and RIAs already inside the Fidelity ecosystem.</div></div>
+        <div class="bcard-angle"><div class="bcard-label">NDTC angle</div><div class="bcard-text">Fidelity has major brand trust with institutions already in its ecosystem. NDTC can focus on clients looking for a dedicated digital asset custody partner, not an extension of a broader brokerage relationship.</div></div>
+        <div class="bcard-sources">Sources: <a href="https://www.occ.gov/news-issuances/news-releases/2025/nr-occ-2025-125.html" target="_blank" rel="noopener">OCC conditional approval announcement (Dec 12, 2025)</a>; <a href="https://newsroom.fidelity.com/pressreleases/fidelity-investments--expands-digital-asset-investment-lineup-with-stablecoin-launch--fidelity-digit/s/3b55e2d1-1dba-4120-9528-1e07e632f3f4" target="_blank" rel="noopener">Fidelity Investments press release (Feb 4, 2026)</a></div>
+      </div>
+
+      <div class="bcard">
+        <div class="bcard-head">
+          <div><div class="bcard-name">Paxos Trust Company, N.A.</div><div class="bcard-sub">Converting from state charter, issuance-focused</div></div>
+          <span class="status-pill process">Conditionally approved Dec 2025</span>
+        </div>
+        <div class="bcard-row"><div class="bcard-label">What they offer</div><div class="bcard-text">Custody of crypto assets, fiat, securities, and commodities, alongside U.S. dollar-backed and gold-backed digital asset issuance and exchange/brokerage/trade facilitation services, now converting its NY trust charter to a national one.</div></div>
+        <div class="bcard-row"><div class="bcard-label">Where they're strong</div><div class="bcard-text">Deep issuance and brokerage-as-a-service infrastructure for large consumer fintechs and exchanges.</div></div>
+        <div class="bcard-angle"><div class="bcard-label">NDTC angle</div><div class="bcard-text">Paxos is strongest as issuance and infrastructure for large platforms. NDTC can focus on direct custody relationships with banks and credit unions.</div></div>
+        <div class="bcard-sources">Sources: <a href="https://www.occ.gov/news-issuances/news-releases/2025/nr-occ-2025-125.html" target="_blank" rel="noopener">OCC conditional approval announcement (Dec 12, 2025)</a></div>
+      </div>
+
+      <div class="bcard">
+        <div class="bcard-head">
+          <div><div class="bcard-name">Circle National Trust</div><div class="bcard-sub">De novo, issuer-first</div></div>
+          <span class="status-pill live">Final approval, Jul 10, 2026</span>
+        </div>
+        <div class="bcard-row"><div class="bcard-label">What they offer</div><div class="bcard-text">The first entity in this new wave to reach final OCC approval. Will initially provide fiduciary custody for Circle's own USDC reserve and affiliates, with a stated plan to potentially extend custody to banks and regulated derivatives organizations later, depending on demand.</div></div>
+        <div class="bcard-row"><div class="bcard-label">Where they're strong</div><div class="bcard-text">Direct federal oversight of reserves backing one of the largest regulated dollar stablecoins. Circle is also the furthest along of the 2025-2026 charter wave.</div></div>
+        <div class="bcard-angle"><div class="bcard-label">NDTC angle</div><div class="bcard-text">Circle National Trust is initially focused on Circle's own reserve and affiliate needs. Broader third-party custody may come later, but it is not the first use case.</div></div>
+        <div class="bcard-sources">Sources: <a href="https://www.businesswire.com/news/home/20260710400969/en/Circle-Receives-Final-OCC-Approval-to-Establish-National-Trust-Bank" target="_blank" rel="noopener">Circle press release, BusinessWire (Jul 10, 2026)</a></div>
+      </div>
+
+      <div class="bcard">
+        <div class="bcard-head">
+          <div><div class="bcard-name">Ripple National Trust Bank</div><div class="bcard-sub">De novo, issuer-first</div></div>
+          <span class="status-pill process">Conditionally approved Dec 2025</span>
+        </div>
+        <div class="bcard-row"><div class="bcard-label">What they offer</div><div class="bcard-text">Plans to manage a segregated reserve of liquid assets underlying RLUSD on behalf of its affiliate Standard Custody &amp; Trust, and to perform collateral trustee services for RLUSD holders on a fiduciary basis, alongside cryptocurrency custody for affiliates and unaffiliated institutional clients.</div></div>
+        <div class="bcard-row"><div class="bcard-label">Where they're strong</div><div class="bcard-text">Dual state and federal oversight positioning for RLUSD, and an existing enterprise payments relationship base through Ripple.</div></div>
+        <div class="bcard-angle"><div class="bcard-label">NDTC angle</div><div class="bcard-text">Ripple National Trust Bank is built first around supporting Ripple's own stablecoin infrastructure. Unaffiliated institutional custody is a secondary offering, not the bank's core purpose.</div></div>
+        <div class="bcard-sources">Sources: <a href="https://www.occ.treas.gov/topics/charters-and-licensing/interpretations-and-decisions/2026/ca1359.pdf" target="_blank" rel="noopener">OCC Conditional Approval #1359 (Dec 12, 2025)</a></div>
+      </div>
+
+      <div class="bcard">
+        <div class="bcard-head">
+          <div><div class="bcard-name">Fireblocks / Fireblocks Trust Company</div><div class="bcard-sub">Wallet infrastructure plus NYDFS-regulated custody</div></div>
+          <span class="status-pill nocharter">NYDFS-chartered (state, not OCC)</span>
+        </div>
+        <div class="bcard-row"><div class="bcard-label">What they offer</div><div class="bcard-text">MPC-based wallet infrastructure and a settlement network used by 2,400+ organizations and 80+ banks, including BNY Mellon and Revolut. Fireblocks Trust Company, a separate limited-purpose trust company chartered by NYDFS, additionally offers qualified digital asset custody, segregated and bankruptcy-remote, to clients including Bakkt, FalconX, and Galaxy.</div></div>
+        <div class="bcard-row"><div class="bcard-label">Where they're strong</div><div class="bcard-text">The dominant technology layer for institutions that want to self-custody, now paired with a state-regulated custody option for clients who want both under one platform.</div></div>
+        <div class="bcard-angle"><div class="bcard-label">NDTC angle</div><div class="bcard-text">Fireblocks combines wallet infrastructure with NYDFS-regulated custody. NDTC's differentiation is the OCC national trust bank path and a custody-first model for institutions that specifically want federal supervision.</div></div>
+        <div class="bcard-sources">Sources: <a href="https://www.fireblocks.com/blog/fireblocks-trust-qualified-custody-proven-security" target="_blank" rel="noopener">Fireblocks Trust Company product page</a>; <a href="https://www.tradingview.com/news/cointelegraph:8b2b75ba0094b:0-exclusive-fireblocks-granted-new-york-charter-for-crypto-custody/" target="_blank" rel="noopener">TradingView/Cointelegraph (Aug 2024)</a></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <span class="section-tag">Section 04</span>
+    <div class="section-head">
+      <h2>Where NDTC wins</h2>
+      <p class="section-thesis">Four points to lead with when a prospect compares NDTC to another provider.</p>
+    </div>
+    <div class="card-grid">
+      <div class="bcard">
+        <div class="bcard-name">Segment focus</div>
+        <div class="bcard-row"><div class="bcard-text">Banks, credit unions, broker-dealers, corporate treasuries, and fintechs that want a dedicated digital asset custody partner.</div></div>
+      </div>
+      <div class="bcard">
+        <div class="bcard-name">Partner-friendly model</div>
+        <div class="bcard-row"><div class="bcard-text">Designed to sit beneath existing technology, wallet, or digital banking providers.</div></div>
+      </div>
+      <div class="bcard">
+        <div class="bcard-name">Custody-first foundation</div>
+        <div class="bcard-row"><div class="bcard-text">Custody, reporting, fiduciary controls, and asset governance come before product expansion.</div></div>
+      </div>
+      <div class="bcard">
+        <div class="bcard-name">Expansion path</div>
+        <div class="bcard-row"><div class="bcard-text">Directed trading, directed lending, and issuer services can follow once custody is established.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <span class="section-tag">Section 05</span>
+    <div class="section-head">
+      <h2>Objection handling</h2>
+      <p class="section-thesis">Quick responses to the questions most likely to come up in a first conversation.</p>
+    </div>
+
+    <div class="obj-row">
+      <div class="obj-q">"Why would we go with a company still 'In Organization' instead of an established name?"</div>
+      <div class="obj-a">Most of the market is still in buildout mode. Anchorage is the operating benchmark, and Circle has reached final approval, but many major names are still moving through conditional approval, conversion, or launch requirements. NDTC's "In Organization" status is not unusual in this market.</div>
+    </div>
+    <div class="obj-row">
+      <div class="obj-q">"Isn't Fireblocks (or a similar MPC provider) enough on its own?"</div>
+      <div class="obj-a">Fireblocks is a strong wallet and custody platform, but it is not the same model as an OCC national trust bank. The question is not whether Fireblocks is useful. It is whether the institution specifically wants an OCC-supervised custody partner.</div>
+    </div>
+    <div class="obj-row">
+      <div class="obj-q">"Why not just wait for a bigger name like Coinbase or Fidelity to build this for us?"</div>
+      <div class="obj-a">Coinbase and Fidelity are strong options, but their natural channels are different. NDTC can focus on banks, credit unions, fintechs, and corporate treasuries that want a dedicated custody partner rather than a broader exchange or asset-management platform.</div>
+    </div>
+    <div class="obj-row">
+      <div class="obj-q">"What can a national trust charter actually do that a state charter can't?"</div>
+      <div class="obj-a">A national trust charter gives institutions a single federal supervisory framework. State-chartered custodians can still be viable, but an OCC-supervised model may be cleaner for institutions operating across markets or serving clients in multiple states.</div>
+    </div>
+
+  </section>
+
+  <p class="footnote">
+    <strong>Methodology.</strong> Charter statuses and dates are drawn from OCC conditional approval letters and decisions, company press releases and SEC filings, and contemporaneous legal and trade press coverage linked throughout the page. This document reflects the public record as of July 2026; charter status for any applicant can change and should be reconfirmed before a live client conversation.
+  </p>
+
+</div>
+
+</body>
+</html>
