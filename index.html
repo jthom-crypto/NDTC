@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NDTC Institutional Sales Associate Application Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VK9EPRYVHN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-VK9EPRYVHN');
+</script>
+<style>
+  :root{
+    --ink:#1B2434;
+    --ink-soft:#3A4356;
+    --paper:#FAFAF8;
+    --slate:#5C6478;
+    --line:#DEDCD3;
+    --accent:#8A6E3E;
+    --paper-tint:#F6F5F1;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1100px;margin:0 auto;padding:0 32px 100px;}
+
+  .site-header{
+    max-width:1100px;
+    margin:0 auto;
+    padding:26px 32px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-bottom:1px solid var(--line);
+    flex-wrap:wrap;
+    gap:14px;
+  }
+  .ndtc-logo img{height:42px;width:auto;display:block;}
+  .header-name{font-size:16px;font-weight:600;color:var(--ink);}
+  .header-role{font-family:'IBM Plex Mono', monospace;font-size:12.5px;color:var(--slate);text-align:right;}
+
+  .intro{padding:56px 32px 40px;border-bottom:1px solid var(--line);}
+  .intro-inner{max-width:1100px;margin:0 auto;}
+  .eyebrow{font-family:'IBM Plex Mono', monospace;font-size:11.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
+  h1{font-weight:600;font-size:clamp(28px,3.4vw,38px);line-height:1.2;margin:0 0 16px;letter-spacing:-0.01em;max-width:20ch;}
+  .dek{font-size:15.5px;line-height:1.65;color:var(--slate);max-width:70ch;margin:0;}
+
+  .projects{padding:48px 0;}
+  .project-card{
+    display:grid;
+    grid-template-columns:64px 1fr auto;
+    gap:24px;
+    align-items:start;
+    padding:32px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .project-card:first-child{padding-top:0;}
+  .project-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--accent);
+    padding-top:4px;
+  }
+  .project-title{font-size:19px;font-weight:600;color:var(--ink);margin:0 0 8px;}
+  .project-desc{font-size:13.5px;color:var(--slate);line-height:1.6;max-width:60ch;margin:0 0 10px;}
+  .project-meta{font-family:'IBM Plex Mono', monospace;font-size:11px;color:var(--slate);}
+  .project-link{
+    align-self:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--ink);
+    text-decoration:none;
+    border:1px solid var(--ink);
+    border-radius:4px;
+    padding:9px 16px;
+    white-space:nowrap;
+    transition:background .15s, color .15s;
+  }
+  .project-link:hover{background:var(--ink);color:var(--paper);}
+
+  .footnote{
+    margin-top:20px;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+    font-size:12px;
+    color:var(--slate);
+    line-height:1.7;
+    max-width:85ch;
+  }
+  .footnote strong{color:var(--ink-soft);}
+
+  @media (max-width:700px){
+    .project-card{grid-template-columns:1fr;gap:10px;}
+    .project-num{padding-top:0;}
+    .project-link{justify-self:start;}
+  }
+</style>
+</head>
+<body>
+
+<div class="site-header">
+  <div class="ndtc-logo">
+    <img src="data:image/png;base64,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" alt="NDTC logo">
+  </div>
+  <div class="header-name">Justin Thom</div>
+  <div class="header-role">INSTITUTIONAL SALES ASSOCIATE application</div>
+</div>
+
+<div class="intro">
+  <div class="intro-inner">
+    <div class="eyebrow">Application Portfolio</div>
+    <h1>Institutional Sales Associate, National Digital Trust Company</h1>
+    <p class="dek">Three projects built to demonstrate how I'd approach this role: finding the right prospects, working one all the way through to a sales recommendation, and understanding where NDTC sits in the competitive field.</p>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="projects">
+
+    <div class="project-card">
+      <div class="project-num">01</div>
+      <div>
+        <div class="project-title">Institutional Prospect Pipeline</div>
+        <p class="project-desc">A segmented target map across banks, credit unions, broker-dealers, corporate treasuries, and fintechs, with 24 named institutions, sizing, signal, and sourcing for each.</p>
+        <div class="project-meta">HTML · interactive</div>
+      </div>
+      <a class="project-link" href="./prospect-pipeline.html">View project →</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">02</div>
+      <div>
+        <div class="project-title">RBFCU Opportunity Assessment</div>
+        <p class="project-desc">An internal-style prospect briefing built around Randolph-Brooks Federal Credit Union, showing how a custody opportunity would be researched, framed, and pitched internally.</p>
+        <div class="project-meta">PDF · sales deck</div>
+      </div>
+      <a class="project-link" href="./rbfcu-opportunity-assessment.pdf">View project →</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">03</div>
+      <div>
+        <div class="project-title">Institutional Custody Competitive Battlecard</div>
+        <p class="project-desc">A sales reference guide comparing NDTC to Anchorage, Coinbase, BitGo, Fidelity, Paxos, Circle, Ripple, and Fireblocks, with objection handling and sourced claims throughout.</p>
+        <div class="project-meta">HTML · interactive</div>
+      </div>
+      <a class="project-link" href="./battlecard.html">View project →</a>
+    </div>
+
+  </div>
+
+  <p class="footnote">
+    <strong>Note.</strong> These are illustrative projects built for this application, based entirely on public information. They are not NDTC work product and do not reflect confirmed NDTC sales strategy, priorities, or client relationships.
+  </p>
+</div>
+
+</body>
+</html>
